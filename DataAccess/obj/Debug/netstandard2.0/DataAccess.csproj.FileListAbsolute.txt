@@ -1,0 +1,12 @@
+C:\Users\sari\Documents\3\TestApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\sari\Documents\3\TestApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\sari\Documents\3\TestApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\sari\Documents\3\TestApp\DataAccess\bin\Debug\netstandard2.0\Entities.dll
+C:\Users\sari\Documents\3\TestApp\DataAccess\bin\Debug\netstandard2.0\Entities.pdb
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\sari\Documents\3\TestApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{091B479B-6A6F-4D7A-9DE9-044B3580EAA7}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestApp/Controllers/UsersController.cs">
+    <Files>
+      <File FileName="TestApp/Startup.cs" Line="45" Column="8" />
+      <File FileName="TestApp/appsettings.json" />
+      <File FileName="TestApp/Program.cs" />
+      <File FileName="TestApp/Controllers/UsersController.cs" Line="31" Column="1" />
+      <File FileName="DataAccess/ISessionFactoryHelper.cs" />
+      <File FileName="DataAccess/NHibernateHelper.cs" />
+      <File FileName="TestApp/angular.json" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TestApp" expanded="True">
+            <Node name="DataAccess" expanded="True" />
+            <Node name="Entities" expanded="True">
+              <Node name="Dbo" expanded="True" />
+            </Node>
+            <Node name="TestApp" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/Mac-Ext/LocalProjects/TestApp/TestApp/Controllers/UsersController.cs" relfile="TestApp/Controllers/UsersController.cs" line="28" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.TestApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
