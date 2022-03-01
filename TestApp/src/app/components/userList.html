@@ -20,22 +20,22 @@
                     <fieldset>
                         <div class="col-md-4">
                             <label for="userName">שם משתמש</label>
-                            <input id="userName" type="text">
+                            <input id="userName" type="text" [(ngModel)]="userName" name="uname">
                         </div>
                         <div class="col-md-4">
                             <label for="positionName">תפקיד</label>
-                            <input id="positionName" type="text">
+                            <input id="positionName" type="text" [(ngModel)]="userRole" name="urole">
                         </div>
                         <div class="col-md-2">
-                            <button class="searcButton buttonStyle">חיפוש</button>
+                            <button class="searcButton buttonStyle" (click)="search()">חיפוש</button>
                         </div>
                     </fieldset>
                 </form>
             </div>
             <div class="newUser-Container col-md-6 col-sm-2 col-xs-12">
                 <div class="newUser-inner">
-                    <button id="AddUser" class="add-newUser bgColorStyle3"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button>
+                    <button routerLink="/UserUpdate" id="AddUser" class="add-newUser bgColorStyle3"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
                     <span>הוספת משתמש חדש</span>
                 </div>
             </div>
@@ -71,8 +71,9 @@
                             {{user.isActive}}
                         </td>
                         <td data-th="עדכון" class="btnContainer"><button type="button" class="editButton"
-                                title="ערוך פרטי משתמש" aria-label="ערוך פרטי משתמש"><i class="fa fa-pencil"
-                                    aria-hidden="true"></i></button></td>
+                                (click)="update(user.id)" title="ערוך פרטי משתמש" aria-label="ערוך פרטי משתמש"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

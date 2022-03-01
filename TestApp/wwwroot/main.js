@@ -123,6 +123,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     { path: "UserList", component: _components_userList_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"] },
     { path: "UserUpdate", component: _components_userUpdate_component__WEBPACK_IMPORTED_MODULE_10__["UserUpdateComponent"] },
+    { path: 'UserUpdate/:id', component: _components_userUpdate_component__WEBPACK_IMPORTED_MODULE_10__["UserUpdateComponent"] },
     {
         path: '',
         redirectTo: '/UserList',
@@ -212,6 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListComponent", function() { return UserListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -223,9 +225,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var UserListComponent = /** @class */ (function () {
-    function UserListComponent(userService) {
+    function UserListComponent(userService, router) {
         this.userService = userService;
+        this.router = router;
         this.usersList = [];
         this.getAll();
     }
@@ -238,12 +242,24 @@ var UserListComponent = /** @class */ (function () {
             console.log(err);
         });
     };
+    UserListComponent.prototype.search = function () {
+        var _this = this;
+        this.userService.search(this.userRole, this.userName).subscribe(function (res) {
+            console.log(res);
+            _this.usersList = res;
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    UserListComponent.prototype.update = function (userId) {
+        this.router.navigate(["/UserUpdate", userId]);
+    };
     UserListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-list',
             template: __webpack_require__(/*! ./userList.html */ "./src/app/components/userList.html")
         }),
-        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], UserListComponent);
     return UserListComponent;
 }());
@@ -259,7 +275,7 @@ var UserListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>ניהול משתמשים</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <div class=\"container\">\r\n            <div class=\"col-md-12\">\r\n                <h2 class=\"headdingColor1\">ניהול משתמשים</h2>\r\n            </div>\r\n            <div class=\"formContainer col-md-6 col-sm-10 col-xs-12\">\r\n                <form class=\"formStyle searchForm\">\r\n                    <fieldset>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"userName\">שם משתמש</label>\r\n                            <input id=\"userName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"positionName\">תפקיד</label>\r\n                            <input id=\"positionName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-2\">\r\n                            <button class=\"searcButton buttonStyle\">חיפוש</button>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n            <div class=\"newUser-Container col-md-6 col-sm-2 col-xs-12\">\r\n                <div class=\"newUser-inner\">\r\n                    <button id=\"AddUser\" class=\"add-newUser bgColorStyle3\"><i class=\"fa fa-plus\"\r\n                            aria-hidden=\"true\"></i></button>\r\n                    <span>הוספת משתמש חדש</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n\r\n    <main id=\"mainSection\" class=\"MainContainer centerWidth\">\r\n        <div class=\"modalTable-inner boederBg\">\r\n            <table class=\"tableStyle1\" title=\"טבלת משתמשים\" id=\"UserTable\">\r\n\r\n\r\n                <thead>\r\n                    <tr>\r\n                        <th>מספר זהות<button class=\"sortTableBy\" title=\"מיין עמודת מספר זהות\"><i class=\"fa fa-sort-desc\"\r\n                                    aria-hidden=\"true\"></i></button></th>\r\n                        <th>שם משתמש</th>\r\n                        <th>תפקיד</th>\r\n                        <th>תאריך יצירה</th>\r\n                        <th class=\"btnContainer\">פעיל</th>\r\n                        <th class=\"btnContainer\">עדכון</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n\r\n                    <tr *ngFor=\"let user of usersList\">\r\n                        <td data-th=\"מספר זהות\">{{user.id}}</td>\r\n                        <td data-th=\"שם משתמש\">{{user.username}}</td>\r\n                        <td data-th=\"תפקיד\">{{user.roleCode}}</td>\r\n                        <td data-th=\"תאריך יצירה\"><span class=\"time\">{{user.createDate}}</span><span\r\n                                class=\"date\">{{user.createDate}}</span>\r\n                        </td>\r\n                        <td data-th=\"פעיל\" class=\"btnContainer\">\r\n                            {{user.isActive}}\r\n                        </td>\r\n                        <td data-th=\"עדכון\" class=\"btnContainer\"><button type=\"button\" class=\"editButton\"\r\n                                title=\"ערוך פרטי משתמש\" aria-label=\"ערוך פרטי משתמש\"><i class=\"fa fa-pencil\"\r\n                                    aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n\r\n    </main>\r\n</div>"
+module.exports = "<div>\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>ניהול משתמשים</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <div class=\"container\">\r\n            <div class=\"col-md-12\">\r\n                <h2 class=\"headdingColor1\">ניהול משתמשים</h2>\r\n            </div>\r\n            <div class=\"formContainer col-md-6 col-sm-10 col-xs-12\">\r\n                <form class=\"formStyle searchForm\">\r\n                    <fieldset>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"userName\">שם משתמש</label>\r\n                            <input id=\"userName\" type=\"text\" [(ngModel)]=\"userName\" name=\"uname\">\r\n                        </div>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"positionName\">תפקיד</label>\r\n                            <input id=\"positionName\" type=\"text\" [(ngModel)]=\"userRole\" name=\"urole\">\r\n                        </div>\r\n                        <div class=\"col-md-2\">\r\n                            <button class=\"searcButton buttonStyle\" (click)=\"search()\">חיפוש</button>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n            <div class=\"newUser-Container col-md-6 col-sm-2 col-xs-12\">\r\n                <div class=\"newUser-inner\">\r\n                    <button routerLink=\"/UserUpdate\" id=\"AddUser\" class=\"add-newUser bgColorStyle3\"><i\r\n                            class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>\r\n                    <span>הוספת משתמש חדש</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n\r\n    <main id=\"mainSection\" class=\"MainContainer centerWidth\">\r\n        <div class=\"modalTable-inner boederBg\">\r\n            <table class=\"tableStyle1\" title=\"טבלת משתמשים\" id=\"UserTable\">\r\n\r\n\r\n                <thead>\r\n                    <tr>\r\n                        <th>מספר זהות<button class=\"sortTableBy\" title=\"מיין עמודת מספר זהות\"><i class=\"fa fa-sort-desc\"\r\n                                    aria-hidden=\"true\"></i></button></th>\r\n                        <th>שם משתמש</th>\r\n                        <th>תפקיד</th>\r\n                        <th>תאריך יצירה</th>\r\n                        <th class=\"btnContainer\">פעיל</th>\r\n                        <th class=\"btnContainer\">עדכון</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n\r\n                    <tr *ngFor=\"let user of usersList\">\r\n                        <td data-th=\"מספר זהות\">{{user.id}}</td>\r\n                        <td data-th=\"שם משתמש\">{{user.username}}</td>\r\n                        <td data-th=\"תפקיד\">{{user.roleCode}}</td>\r\n                        <td data-th=\"תאריך יצירה\"><span class=\"time\">{{user.createDate}}</span><span\r\n                                class=\"date\">{{user.createDate}}</span>\r\n                        </td>\r\n                        <td data-th=\"פעיל\" class=\"btnContainer\">\r\n                            {{user.isActive}}\r\n                        </td>\r\n                        <td data-th=\"עדכון\" class=\"btnContainer\"><button type=\"button\" class=\"editButton\"\r\n                                (click)=\"update(user.id)\" title=\"ערוך פרטי משתמש\" aria-label=\"ערוך פרטי משתמש\"><i\r\n                                    class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n\r\n    </main>\r\n</div>"
 
 /***/ }),
 
@@ -274,6 +290,8 @@ module.exports = "<div>\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserUpdateComponent", function() { return UserUpdateComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -284,15 +302,35 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var UserUpdateComponent = /** @class */ (function () {
-    function UserUpdateComponent() {
+    function UserUpdateComponent(route, userService) {
+        this.route = route;
+        this.userService = userService;
     }
+    UserUpdateComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.paramMap.subscribe(function (params) {
+            var id = params.get('id');
+            if (id != undefined) {
+                _this.Userid = id;
+                _this.userService.getUser(_this.Userid).subscribe(function (res) {
+                    console.log(res);
+                    _this.user = res;
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+            console.log(id);
+        });
+    };
     UserUpdateComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-update',
             template: __webpack_require__(/*! ./userUpdate.html */ "./src/app/components/userUpdate.html")
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], UserUpdateComponent);
     return UserUpdateComponent;
 }());
@@ -308,7 +346,7 @@ var UserUpdateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<script src=\"scripts/app/controllers/updateUserCtrl.js\"></script>\r\n<div>\r\n    <!--[if lt IE 8]>\r\n        <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.</p>\r\n    <![endif]-->\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>פרטי משתמש</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>הוספת משתמש חדש</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <form class=\"formStyle addNew-detils\">\r\n            <div class=\"container\">\r\n                <div class=\"col-md-12\"><h2 class=\"headdingColor1\">פרטי משתמש</h2></div>\r\n                <div class=\"user-formContainer col-md-12\">\r\n\r\n                    <fieldset>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userName\">שם משתמש *</label>\r\n                            <input id=\"userName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userID-IL\">תעודת זהות *</label>\r\n                            <input id=\"userID-IL\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userPhone\">טלפון *</label>\r\n                            <input id=\"userPhone\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userEmail\">דוא\"ל *</label>\r\n                            <input id=\"userEmail\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"positionName\">תפקיד *</label>\r\n                            <select id=\"positionName\" class=\"positionsList\">\r\n                                <option value=\"\" selected=\"\">בחר מהרשימה</option>\r\n                              \r\n                            </select>\r\n                            \r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"\">פעיל</label>\r\n                            <input type=\"checkbox\" />\r\n                        </div>\r\n                    </fieldset>\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"managmentButtons row\">\r\n                <div class=\"container\">\r\n                    <button id=\"btnSave\" class=\"saveButton2 buttonStyle2\">שמירה</button>\r\n                    <button class=\"clearButton buttonStyle\">אפס סיסמה</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n\r\n</div>"
+module.exports = "<script src=\"scripts/app/controllers/updateUserCtrl.js\"></script>\r\n<div>\r\n    <!--[if lt IE 8]>\r\n        <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.</p>\r\n    <![endif]-->\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>פרטי משתמש</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>הוספת משתמש חדש</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <form class=\"formStyle addNew-detils\">\r\n            <div class=\"container\">\r\n                <div class=\"col-md-12\">\r\n                    <h2 class=\"headdingColor1\">פרטי משתמש</h2>\r\n                </div>\r\n                <div class=\"user-formContainer col-md-12\">\r\n\r\n                    <fieldset>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userName\">שם משתמש *</label>\r\n                            <input id=\"userName\" type=\"text\" [(ngModel)]=\"user.username\" name=\"name\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userID-IL\">תעודת זהות *</label>\r\n                            <input id=\"userID-IL\" type=\"text\" [(ngModel)]=\"user.id\" name=\"id\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userPhone\">טלפון *</label>\r\n                            <input id=\"userPhone\" type=\"text\" [(ngModel)]=\"user.phone\" name=\"phone\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userEmail\">דוא\"ל *</label>\r\n                            <input id=\"userEmail\" type=\"text\" [(ngModel)]=\"user.email\" name=\"email\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"positionName\">תפקיד *</label>\r\n                            <select id=\"positionName\" class=\"positionsList\">\r\n                                <option value=\"\" selected=\"\">בחר מהרשימה</option>\r\n\r\n                            </select>\r\n\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"\">פעיל</label>\r\n                            <input type=\"checkbox\" [(ngModel)]=\"user.isActive\" name=\"isActive\" />\r\n                        </div>\r\n                    </fieldset>\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"managmentButtons row\">\r\n                <div class=\"container\">\r\n                    <button id=\"btnSave\" class=\"saveButton2 buttonStyle2\">שמירה</button>\r\n                    <button class=\"clearButton buttonStyle\">אפס סיסמה</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -341,8 +379,14 @@ var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
     }
+    UserService.prototype.getUser = function (id) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users/" + id);
+    };
     UserService.prototype.getList = function () {
         return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users");
+    };
+    UserService.prototype.search = function (role, name) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users/" + role + "/" + name);
     };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

@@ -15,12 +15,13 @@ import { UserUpdateComponent } from "./components/userUpdate.component";
 const routes: Routes = [
   { path: "UserList", component: UserListComponent },
   { path: "UserUpdate", component: UserUpdateComponent },
+  { path: 'UserUpdate/:id', component: UserUpdateComponent },
   {
     path: '',
     redirectTo: '/UserList',
     pathMatch: 'full'
   }
-  ]
+]
 
 @NgModule({
   declarations: [

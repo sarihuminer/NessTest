@@ -30,19 +30,32 @@ namespace TestApp.Controllers
       // Instantiate source object
       // (Get it from the database or whatever your code calls for)
 
-      List<Users> userList = _userRepository.getCustomers();
+      List<Users> userList = _userRepository.getUsers();
       return Ok( userList);
       // .... Do whatever you want after that!
     }
-    
+
+    [HttpGet("{role}/{name}")]
     public async Task<IActionResult> Get([FromRoute] int role, [FromRoute]string name)
     {
 
       // Instantiate source object
       // (Get it from the database or whatever your code calls for)
 
-      List<Users> userList = _userRepository.getCustomers(role,name);
+      List<Users> userList = _userRepository.getUsers(role,name);
       return Ok(userList);
+      // .... Do whatever you want after that!
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get([FromRoute] string id)
+    {
+
+      // Instantiate source object
+      // (Get it from the database or whatever your code calls for)
+
+     Users user = _userRepository.getUser(id);
+      return Ok(user);
       // .... Do whatever you want after that!
     }
   }
