@@ -17,7 +17,7 @@ namespace Services
             this._mapper = mapper;
             this._sessionFactoryHelper = sessionFactoryHelper;
         }
-        public  List<Models.Users> getProductOrdersForCustomer()
+        public  List<Models.Users> getCustomers()
         {
             List<Entities.Dbo.Users> users = new List<Entities.Dbo.Users>();
 
@@ -30,6 +30,18 @@ namespace Services
 
 
             List<Models.Users> list = _mapper.Map<List<Entities.Dbo.Users>, List<Models.Users>>(users);
+            return list;
+        }
+        public List<Models.Users> getCustomers(int role,string name)
+        {
+            List<Entities.Dbo.Users> users = new List<Entities.Dbo.Users>();
+
+            // Get the session
+            ISession session = _sessionFactoryHelper.GetSession();
+
+            // Load the order from the database
+            IQuery query = session.CreateQuery("from Users");
+            List<Models.Users> list = query.List<Models.Users>() as List<Models.Users>;
             return list;
         }
     }

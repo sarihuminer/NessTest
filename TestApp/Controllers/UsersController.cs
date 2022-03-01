@@ -29,10 +29,20 @@ namespace TestApp.Controllers
 
       // Instantiate source object
       // (Get it from the database or whatever your code calls for)
-      var users =  _userRepository.getProductOrdersForCustomer();
 
-      List<Users> userList = _userRepository.getProductOrdersForCustomer();
+      List<Users> userList = _userRepository.getCustomers();
       return Ok( userList);
+      // .... Do whatever you want after that!
+    }
+    
+    public async Task<IActionResult> Get([FromRoute] int role, [FromRoute]string name)
+    {
+
+      // Instantiate source object
+      // (Get it from the database or whatever your code calls for)
+
+      List<Users> userList = _userRepository.getCustomers(role,name);
+      return Ok(userList);
       // .... Do whatever you want after that!
     }
   }

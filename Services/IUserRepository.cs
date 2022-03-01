@@ -6,6 +6,7 @@ namespace Services
 {
    public interface IUserRepository
     {
-        List<Models.Users> getProductOrdersForCustomer();
+        List<Models.Users> getCustomers();
+        List<Models.Users> getCustomers(int role,string name);
     }
 }

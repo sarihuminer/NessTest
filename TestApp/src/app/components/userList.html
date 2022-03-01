@@ -12,7 +12,9 @@
     </section>
     <section class="managment row bgColorStyle2">
         <div class="container">
-            <div class="col-md-12"><h2 class="headdingColor1">ניהול משתמשים</h2></div>
+            <div class="col-md-12">
+                <h2 class="headdingColor1">ניהול משתמשים</h2>
+            </div>
             <div class="formContainer col-md-6 col-sm-10 col-xs-12">
                 <form class="formStyle searchForm">
                     <fieldset>
@@ -32,21 +34,23 @@
             </div>
             <div class="newUser-Container col-md-6 col-sm-2 col-xs-12">
                 <div class="newUser-inner">
-                    <button id="AddUser" class="add-newUser bgColorStyle3"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button id="AddUser" class="add-newUser bgColorStyle3"><i class="fa fa-plus"
+                            aria-hidden="true"></i></button>
                     <span>הוספת משתמש חדש</span>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <main id="mainSection" class="MainContainer centerWidth">
-          <div class="modalTable-inner boederBg" >
+        <div class="modalTable-inner boederBg">
             <table class="tableStyle1" title="טבלת משתמשים" id="UserTable">
 
 
                 <thead>
                     <tr>
-                        <th>מספר זהות<button class="sortTableBy" title="מיין עמודת מספר זהות"><i class="fa fa-sort-desc" aria-hidden="true"></i></button></th>
+                        <th>מספר זהות<button class="sortTableBy" title="מיין עמודת מספר זהות"><i class="fa fa-sort-desc"
+                                    aria-hidden="true"></i></button></th>
                         <th>שם משתמש</th>
                         <th>תפקיד</th>
                         <th>תאריך יצירה</th>
@@ -55,20 +59,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                 
-                    <tr>
-                        <td data-th="מספר זהות">02345678</td>
-                        <td data-th="שם משתמש">נורית ברוש</td>
-                        <td data-th="תפקיד">בודק</td>
-                        <td data-th="תאריך יצירה"><span class="time">10:59</span><span class="date">03/08/2017</span></td>
-                        <td data-th="פעיל" class="btnContainer">
-                            כן
+
+                    <tr *ngFor="let user of usersList">
+                        <td data-th="מספר זהות">{{user.id}}</td>
+                        <td data-th="שם משתמש">{{user.username}}</td>
+                        <td data-th="תפקיד">{{user.roleCode}}</td>
+                        <td data-th="תאריך יצירה"><span class="time">{{user.createDate}}</span><span
+                                class="date">{{user.createDate}}</span>
                         </td>
-                        <td data-th="עדכון" class="btnContainer"><button type="button" class="editButton" title="ערוך פרטי משתמש" aria-label="ערוך פרטי משתמש"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                        <td data-th="פעיל" class="btnContainer">
+                            {{user.isActive}}
+                        </td>
+                        <td data-th="עדכון" class="btnContainer"><button type="button" class="editButton"
+                                title="ערוך פרטי משתמש" aria-label="ערוך פרטי משתמש"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-       
+
     </main>
 </div>

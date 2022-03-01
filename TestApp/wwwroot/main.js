@@ -211,6 +211,7 @@ module.exports = "<section class=\"row mainNavigation\">\r\n    <div class=\"cen
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListComponent", function() { return UserListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -221,15 +222,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var UserListComponent = /** @class */ (function () {
-    function UserListComponent() {
+    function UserListComponent(userService) {
+        this.userService = userService;
+        this.usersList = [];
+        this.getAll();
     }
+    UserListComponent.prototype.getAll = function () {
+        var _this = this;
+        this.userService.getList().subscribe(function (res) {
+            console.log(res);
+            _this.usersList = res;
+        }, function (err) {
+            console.log(err);
+        });
+    };
     UserListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-list',
             template: __webpack_require__(/*! ./userList.html */ "./src/app/components/userList.html")
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
     ], UserListComponent);
     return UserListComponent;
 }());
@@ -245,7 +259,7 @@ var UserListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>ניהול משתמשים</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <div class=\"container\">\r\n            <div class=\"col-md-12\"><h2 class=\"headdingColor1\">ניהול משתמשים</h2></div>\r\n            <div class=\"formContainer col-md-6 col-sm-10 col-xs-12\">\r\n                <form class=\"formStyle searchForm\">\r\n                    <fieldset>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"userName\">שם משתמש</label>\r\n                            <input id=\"userName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"positionName\">תפקיד</label>\r\n                            <input id=\"positionName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-2\">\r\n                            <button class=\"searcButton buttonStyle\">חיפוש</button>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n            <div class=\"newUser-Container col-md-6 col-sm-2 col-xs-12\">\r\n                <div class=\"newUser-inner\">\r\n                    <button id=\"AddUser\" class=\"add-newUser bgColorStyle3\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>\r\n                    <span>הוספת משתמש חדש</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n    \r\n    <main id=\"mainSection\" class=\"MainContainer centerWidth\">\r\n          <div class=\"modalTable-inner boederBg\" >\r\n            <table class=\"tableStyle1\" title=\"טבלת משתמשים\" id=\"UserTable\">\r\n\r\n\r\n                <thead>\r\n                    <tr>\r\n                        <th>מספר זהות<button class=\"sortTableBy\" title=\"מיין עמודת מספר זהות\"><i class=\"fa fa-sort-desc\" aria-hidden=\"true\"></i></button></th>\r\n                        <th>שם משתמש</th>\r\n                        <th>תפקיד</th>\r\n                        <th>תאריך יצירה</th>\r\n                        <th class=\"btnContainer\">פעיל</th>\r\n                        <th class=\"btnContainer\">עדכון</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                 \r\n                    <tr>\r\n                        <td data-th=\"מספר זהות\">02345678</td>\r\n                        <td data-th=\"שם משתמש\">נורית ברוש</td>\r\n                        <td data-th=\"תפקיד\">בודק</td>\r\n                        <td data-th=\"תאריך יצירה\"><span class=\"time\">10:59</span><span class=\"date\">03/08/2017</span></td>\r\n                        <td data-th=\"פעיל\" class=\"btnContainer\">\r\n                            כן\r\n                        </td>\r\n                        <td data-th=\"עדכון\" class=\"btnContainer\"><button type=\"button\" class=\"editButton\" title=\"ערוך פרטי משתמש\" aria-label=\"ערוך פרטי משתמש\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n       \r\n    </main>\r\n</div>\r\n"
+module.exports = "<div>\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>ניהול משתמשים</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <div class=\"container\">\r\n            <div class=\"col-md-12\">\r\n                <h2 class=\"headdingColor1\">ניהול משתמשים</h2>\r\n            </div>\r\n            <div class=\"formContainer col-md-6 col-sm-10 col-xs-12\">\r\n                <form class=\"formStyle searchForm\">\r\n                    <fieldset>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"userName\">שם משתמש</label>\r\n                            <input id=\"userName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-4\">\r\n                            <label for=\"positionName\">תפקיד</label>\r\n                            <input id=\"positionName\" type=\"text\">\r\n                        </div>\r\n                        <div class=\"col-md-2\">\r\n                            <button class=\"searcButton buttonStyle\">חיפוש</button>\r\n                        </div>\r\n                    </fieldset>\r\n                </form>\r\n            </div>\r\n            <div class=\"newUser-Container col-md-6 col-sm-2 col-xs-12\">\r\n                <div class=\"newUser-inner\">\r\n                    <button id=\"AddUser\" class=\"add-newUser bgColorStyle3\"><i class=\"fa fa-plus\"\r\n                            aria-hidden=\"true\"></i></button>\r\n                    <span>הוספת משתמש חדש</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n\r\n    <main id=\"mainSection\" class=\"MainContainer centerWidth\">\r\n        <div class=\"modalTable-inner boederBg\">\r\n            <table class=\"tableStyle1\" title=\"טבלת משתמשים\" id=\"UserTable\">\r\n\r\n\r\n                <thead>\r\n                    <tr>\r\n                        <th>מספר זהות<button class=\"sortTableBy\" title=\"מיין עמודת מספר זהות\"><i class=\"fa fa-sort-desc\"\r\n                                    aria-hidden=\"true\"></i></button></th>\r\n                        <th>שם משתמש</th>\r\n                        <th>תפקיד</th>\r\n                        <th>תאריך יצירה</th>\r\n                        <th class=\"btnContainer\">פעיל</th>\r\n                        <th class=\"btnContainer\">עדכון</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n\r\n                    <tr *ngFor=\"let user of usersList\">\r\n                        <td data-th=\"מספר זהות\">{{user.id}}</td>\r\n                        <td data-th=\"שם משתמש\">{{user.username}}</td>\r\n                        <td data-th=\"תפקיד\">{{user.roleCode}}</td>\r\n                        <td data-th=\"תאריך יצירה\"><span class=\"time\">{{user.createDate}}</span><span\r\n                                class=\"date\">{{user.createDate}}</span>\r\n                        </td>\r\n                        <td data-th=\"פעיל\" class=\"btnContainer\">\r\n                            {{user.isActive}}\r\n                        </td>\r\n                        <td data-th=\"עדכון\" class=\"btnContainer\"><button type=\"button\" class=\"editButton\"\r\n                                title=\"ערוך פרטי משתמש\" aria-label=\"ערוך פרטי משתמש\"><i class=\"fa fa-pencil\"\r\n                                    aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n\r\n    </main>\r\n</div>"
 
 /***/ }),
 
@@ -298,6 +312,51 @@ module.exports = "<script src=\"scripts/app/controllers/updateUserCtrl.js\"></sc
 
 /***/ }),
 
+/***/ "./src/app/services/user.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/user.service.ts ***!
+  \******************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserService = /** @class */ (function () {
+    function UserService(http) {
+        this.http = http;
+    }
+    UserService.prototype.getList = function () {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users");
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+    ], UserService);
+    return UserService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -313,7 +372,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    production: false
+    production: false,
+    url: "http://localhost:12867/api/"
 };
 
 
