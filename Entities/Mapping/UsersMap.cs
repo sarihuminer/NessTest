@@ -13,7 +13,7 @@ namespace Entities.Mapping
             Table("Users");
             LazyLoad();
             Id(x => x.Id).GeneratedBy.Assigned().Column("ID");
-            References(x => x.Organizationlevels).Column("OrganizationLevel");
+            References(x => x.Organizationlevels).Column("OrganizationLevel").Cascade.All();
             References(x => x.Role).Column("Role");
             Map(x => x.Username).Column("UserName").Not.Nullable();
             Map(x => x.Email).Column("Email").Not.Nullable();

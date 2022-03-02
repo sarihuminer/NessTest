@@ -28,6 +28,7 @@ namespace TestApp
      
       services.AddTransient<ISessionFactoryHelper, NHibernateHelper>();
       services.AddTransient<IUserRepository, UserRepository>();
+      services.AddTransient<IRoleRepository, RoleRepository>();
       services.AddControllers();
       services.AddAutoMapper(x =>
       {

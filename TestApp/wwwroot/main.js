@@ -292,7 +292,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _models_user_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/user.model */ "./src/app/models/user.model.ts");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_role_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/role.service */ "./src/app/services/role.service.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -306,11 +307,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserUpdateComponent = /** @class */ (function () {
-    function UserUpdateComponent(route, userService) {
+    function UserUpdateComponent(route, userService, roleService) {
         this.route = route;
         this.userService = userService;
+        this.roleService = roleService;
         this.user = new _models_user_model__WEBPACK_IMPORTED_MODULE_2__["user"]();
+        this.roleList = [];
+        this.user.isActive = false;
+        this.getAll();
     }
     UserUpdateComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -325,6 +331,9 @@ var UserUpdateComponent = /** @class */ (function () {
                     console.log(err);
                 });
             }
+            else {
+                _this.user.roleCode = 0;
+            }
             console.log(id);
         });
     };
@@ -333,12 +342,21 @@ var UserUpdateComponent = /** @class */ (function () {
             console.log(res);
         }, function (err) { console.log(err); });
     };
+    UserUpdateComponent.prototype.getAll = function () {
+        var _this = this;
+        this.roleService.getRoles().subscribe(function (res) {
+            console.log(res);
+            _this.roleList = res;
+        }, function (err) {
+            console.log(err);
+        });
+    };
     UserUpdateComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-update',
             template: __webpack_require__(/*! ./userUpdate.html */ "./src/app/components/userUpdate.html")
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], _services_role_service__WEBPACK_IMPORTED_MODULE_3__["RoleService"]])
     ], UserUpdateComponent);
     return UserUpdateComponent;
 }());
@@ -354,7 +372,7 @@ var UserUpdateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<script src=\"scripts/app/controllers/updateUserCtrl.js\"></script>\r\n<div>\r\n    <!--[if lt IE 8]>\r\n        <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.</p>\r\n    <![endif]-->\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>פרטי משתמש</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>הוספת משתמש חדש</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <form class=\"formStyle addNew-detils\">\r\n            <div class=\"container\">\r\n                <div class=\"col-md-12\">\r\n                    <h2 class=\"headdingColor1\">פרטי משתמש</h2>\r\n                </div>\r\n                <div class=\"user-formContainer col-md-12\">\r\n\r\n                    <fieldset>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userName\">שם משתמש *</label>\r\n                            <input id=\"userName\" type=\"text\" [(ngModel)]=\"user.username\" name=\"name\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userID-IL\">תעודת זהות *</label>\r\n                            <input id=\"userID-IL\" type=\"text\" [(ngModel)]=\"user.id\" name=\"id\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userPhone\">טלפון *</label>\r\n                            <input id=\"userPhone\" type=\"text\" [(ngModel)]=\"user.phone\" name=\"phone\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userEmail\">דוא\"ל *</label>\r\n                            <input id=\"userEmail\" type=\"text\" [(ngModel)]=\"user.email\" name=\"email\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"positionName\">תפקיד *</label>\r\n                            <select id=\"positionName\" class=\"positionsList\">\r\n                                <option value=\"\" selected=\"user.roleDescribtion\">בחר מהרשימה</option>\r\n\r\n                            </select>\r\n\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"\">פעיל</label>\r\n                            <input type=\"checkbox\" [(ngModel)]=\"user.isActive\" name=\"isActive\" />\r\n                        </div>\r\n                    </fieldset>\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"managmentButtons row\">\r\n                <div class=\"container\">\r\n                    <button id=\"btnSave\" class=\"saveButton2 buttonStyle2\" (click)=\"addUser()\">שמירה</button>\r\n                    <button class=\"clearButton buttonStyle\">אפס סיסמה</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n\r\n</div>"
+module.exports = "<script src=\"scripts/app/controllers/updateUserCtrl.js\"></script>\r\n<div>\r\n    <!--[if lt IE 8]>\r\n        <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.</p>\r\n    <![endif]-->\r\n    <section class=\"bradcrumbs row bgColorStyle2\">\r\n        <ul class=\"centerWidth\">\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>משתמשים</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <a href=\"#\" class=\"pathway\"><span>פרטי משתמש</span></a>\r\n                <span class=\"divider\">/</span>\r\n            </li>\r\n            <li>\r\n                <span>הוספת משתמש חדש</span>\r\n            </li>\r\n        </ul>\r\n    </section>\r\n    <section class=\"managment row bgColorStyle2\">\r\n        <form class=\"formStyle addNew-detils\">\r\n            <div class=\"container\">\r\n                <div class=\"col-md-12\">\r\n                    <h2 class=\"headdingColor1\">פרטי משתמש</h2>\r\n                </div>\r\n                <div class=\"user-formContainer col-md-12\">\r\n\r\n                    <fieldset>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userName\">שם משתמש *</label>\r\n                            <input id=\"userName\" type=\"text\" [(ngModel)]=\"user.username\" name=\"name\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userID-IL\">תעודת זהות *</label>\r\n                            <input id=\"userID-IL\" type=\"text\" [(ngModel)]=\"user.id\" name=\"id\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userPhone\">טלפון *</label>\r\n                            <input id=\"userPhone\" type=\"text\" [(ngModel)]=\"user.phone\" name=\"phone\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"userEmail\">דוא\"ל *</label>\r\n                            <input id=\"userEmail\" type=\"text\" [(ngModel)]=\"user.email\" name=\"email\">\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"positionName\">תפקיד *</label>\r\n                            <select id=\"positionName\" class=\"positionsList\" name=\"roleslist\"\r\n                                [(ngModel)]=\"user.roleCode\">\r\n                                <option value=0 selected>בחר מהרשימה</option>\r\n                                <option *ngFor=\"let role of roleList\" [value]=\"role.code\">{{role.description}}</option>\r\n                            </select>\r\n\r\n\r\n                        </div>\r\n                        <div class=\"col-md-6 col-sm-12\">\r\n                            <label for=\"\">פעיל</label>\r\n                            <input type=\"checkbox\" [(ngModel)]=\"user.isActive\" name=\"isActive\" />\r\n                        </div>\r\n                    </fieldset>\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"managmentButtons row\">\r\n                <div class=\"container\">\r\n                    <button id=\"btnSave\" class=\"saveButton2 buttonStyle2\" (click)=\"addUser()\">שמירה</button>\r\n                    <button class=\"clearButton buttonStyle\">אפס סיסמה</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -372,6 +390,51 @@ var user = /** @class */ (function () {
     function user() {
     }
     return user;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/role.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/role.service.ts ***!
+  \******************************************/
+/*! exports provided: RoleService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoleService", function() { return RoleService; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var RoleService = /** @class */ (function () {
+    function RoleService(http) {
+        this.http = http;
+    }
+    RoleService.prototype.getRoles = function () {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Roles");
+    };
+    RoleService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+    ], RoleService);
+    return RoleService;
 }());
 
 
@@ -417,6 +480,7 @@ var UserService = /** @class */ (function () {
         return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users/" + role + "/" + name);
     };
     UserService.prototype.AddUser = function (user) {
+        user.roleCode = Number(user.roleCode);
         return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].url + "Users", user);
     };
     UserService = __decorate([

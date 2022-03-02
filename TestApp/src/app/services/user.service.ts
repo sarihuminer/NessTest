@@ -23,6 +23,7 @@ export class UserService {
     return this.http.get<user[]>(`${environment.url}Users/${role}/${name}`);
   }
   AddUser(user: user): Observable<boolean> {
+    user.roleCode = Number(user.roleCode);
     return this.http.post<boolean>(`${environment.url}Users`, user);
   }
 

@@ -27,12 +27,8 @@ namespace TestApp.Controllers
     public async Task<IActionResult> Get()
     {
 
-      // Instantiate source object
-      // (Get it from the database or whatever your code calls for)
-
       List<Users> userList = _userRepository.getUsers();
       return Ok(userList);
-      // .... Do whatever you want after that!
     }
 
     [HttpGet("{role}/{name}")]
@@ -50,20 +46,14 @@ namespace TestApp.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> Get([FromRoute] string id)
     {
-
-      // Instantiate source object
-      // (Get it from the database or whatever your code calls for)
-
       Users user = _userRepository.getUser(id);
       return Ok(user);
-      // .... Do whatever you want after that!
     }
     [HttpPost]
     public async Task<IActionResult> AddUser([FromBody] Users user)
     {
      bool b= _userRepository.createUser(user);
       return Ok(b);
-      // .... Do whatever you want after that!
     }
   }
 }

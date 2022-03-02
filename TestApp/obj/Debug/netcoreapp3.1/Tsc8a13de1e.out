@@ -14,6 +14,10 @@ C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\user.ser
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\user.service.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\components\userList.component.js
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\components\userList.component.js.map
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\models\role.model.js
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\models\role.model.js.map
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\role.service.js
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\role.service.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\components\userUpdate.component.js
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\components\userUpdate.component.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\app.module.js
@@ -26,6 +30,8 @@ C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\test.js
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\test.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\app.component.spec.js
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\app.component.spec.js.map
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\role.service.spec.js
+C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\role.service.spec.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\user.service.spec.js
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\app\services\user.service.spec.js.map
 C:\Users\sari\Documents\3\TestApp\TestApp\dist\out-tsc\src\environments\environment.prod.js

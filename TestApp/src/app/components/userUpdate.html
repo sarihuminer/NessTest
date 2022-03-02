@@ -45,10 +45,12 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="positionName">תפקיד *</label>
-                            <select id="positionName" class="positionsList">
-                                <option value="" selected="user.roleDescribtion">בחר מהרשימה</option>
-
+                            <select id="positionName" class="positionsList" name="roleslist"
+                                [(ngModel)]="user.roleCode">
+                                <option value=0 selected>בחר מהרשימה</option>
+                                <option *ngFor="let role of roleList" [value]="role.code">{{role.description}}</option>
                             </select>
+
 
                         </div>
                         <div class="col-md-6 col-sm-12">
