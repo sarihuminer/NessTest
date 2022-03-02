@@ -4,6 +4,7 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services
@@ -77,8 +78,12 @@ namespace Services
                         //relation ship 
                         userD.Organizationlevels.Name = "";
                         userD.Organizationlevels.IsRowDeleted = false;
+                        Entities.Dbo.Users userS = session.Load<Entities.Dbo.Users>(userD.Id);
 
-                        session.Save(userD);
+                        if (userS.Id == userD.Id)
+                            session.Evict(userS);
+                        session.SaveOrUpdate(userD);
+                        //Thread.Sleep(1000);
                         transaction.Commit();
                         return true;
                     }
