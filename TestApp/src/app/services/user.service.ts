@@ -22,4 +22,8 @@ export class UserService {
   search(role: number, name: string): Observable<user[]> {
     return this.http.get<user[]>(`${environment.url}Users/${role}/${name}`);
   }
+  AddUser(user: user): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.url}Users`, user);
+  }
+
 }

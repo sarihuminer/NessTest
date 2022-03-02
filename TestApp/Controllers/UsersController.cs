@@ -31,18 +31,18 @@ namespace TestApp.Controllers
       // (Get it from the database or whatever your code calls for)
 
       List<Users> userList = _userRepository.getUsers();
-      return Ok( userList);
+      return Ok(userList);
       // .... Do whatever you want after that!
     }
 
     [HttpGet("{role}/{name}")]
-    public async Task<IActionResult> Get([FromRoute] int role, [FromRoute]string name)
+    public async Task<IActionResult> Get([FromRoute] int role, [FromRoute] string name)
     {
 
       // Instantiate source object
       // (Get it from the database or whatever your code calls for)
 
-      List<Users> userList = _userRepository.getUsers(role,name);
+      List<Users> userList = _userRepository.getUsers(role, name);
       return Ok(userList);
       // .... Do whatever you want after that!
     }
@@ -54,8 +54,15 @@ namespace TestApp.Controllers
       // Instantiate source object
       // (Get it from the database or whatever your code calls for)
 
-     Users user = _userRepository.getUser(id);
+      Users user = _userRepository.getUser(id);
       return Ok(user);
+      // .... Do whatever you want after that!
+    }
+    [HttpPost]
+    public async Task<IActionResult> AddUser([FromBody] Users user)
+    {
+     bool b= _userRepository.createUser(user);
+      return Ok(b);
       // .... Do whatever you want after that!
     }
   }

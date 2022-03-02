@@ -18,6 +18,7 @@ namespace Services.mapping
        .ForMember(opt => opt.Id, mod => mod.MapFrom(src => src.Id))
        .ForMember(opt => opt.Username, mod => mod.MapFrom(src => src.Username))
        .ForMember(opt => opt.RoleCode, mod => mod.MapFrom(src => src.Role.Code))
+       .ForMember(opt => opt.RoleDescribtion, mod => mod.MapFrom(src => src.Role.Description))
        .ForMember(opt => opt.Email, mod => mod.MapFrom(src => src.Email))
        .ForMember(opt => opt.Phone, mod => mod.MapFrom(src => src.Phone))
        .ForMember(opt => opt.Managerid, mod => mod.MapFrom(src => src.Managerid))

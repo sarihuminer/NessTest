@@ -3,6 +3,7 @@ export class user {
     organizationlevelsId: number;
     username: string;
     roleCode: number;
+    roleDescribtion: string;
     email: string;
     phone: string;
     managerid: string;

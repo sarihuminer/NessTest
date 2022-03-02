@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserUpdateComponent implements OnInit {
   Userid: string;
-  user: user;
+  user: user = new user();
   constructor(private route: ActivatedRoute, private userService: UserService) {
 
   }
@@ -29,5 +29,12 @@ export class UserUpdateComponent implements OnInit {
 
       console.log(id);
     });
+  }
+  addUser() {
+    this.userService.AddUser(this.user).subscribe(res => {
+      console.log(res);
+    }, err => { console.log(err); })
+
+
   }
 }

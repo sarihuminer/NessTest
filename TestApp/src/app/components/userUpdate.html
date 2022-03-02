@@ -46,7 +46,7 @@
                         <div class="col-md-6 col-sm-12">
                             <label for="positionName">תפקיד *</label>
                             <select id="positionName" class="positionsList">
-                                <option value="" selected="">בחר מהרשימה</option>
+                                <option value="" selected="user.roleDescribtion">בחר מהרשימה</option>
 
                             </select>
 
@@ -61,7 +61,7 @@
             </div>
             <div class="managmentButtons row">
                 <div class="container">
-                    <button id="btnSave" class="saveButton2 buttonStyle2">שמירה</button>
+                    <button id="btnSave" class="saveButton2 buttonStyle2" (click)="addUser()">שמירה</button>
                     <button class="clearButton buttonStyle">אפס סיסמה</button>
                 </div>
             </div>

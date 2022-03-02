@@ -63,12 +63,12 @@
                     <tr *ngFor="let user of usersList">
                         <td data-th="מספר זהות">{{user.id}}</td>
                         <td data-th="שם משתמש">{{user.username}}</td>
-                        <td data-th="תפקיד">{{user.roleCode}}</td>
-                        <td data-th="תאריך יצירה"><span class="time">{{user.createDate}}</span><span
-                                class="date">{{user.createDate}}</span>
+                        <td data-th="תפקיד">{{user.roleDescribtion}}</td>
+                        <td data-th="תאריך יצירה"><span class="time">{{user.createDate |date:"mediumTime"}}</span><span
+                                class="date">{{user.createDate |date:"shortDate"}}</span>
                         </td>
                         <td data-th="פעיל" class="btnContainer">
-                            {{user.isActive}}
+                            {{user.isActive?'לא':'כן'}}
                         </td>
                         <td data-th="עדכון" class="btnContainer"><button type="button" class="editButton"
                                 (click)="update(user.id)" title="ערוך פרטי משתמש" aria-label="ערוך פרטי משתמש"><i
