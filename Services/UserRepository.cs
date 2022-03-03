@@ -36,11 +36,23 @@ namespace Services
             // Get the session
             ISession session = _sessionFactoryHelper.GetSession();
             // Load the order from the database
-            IQuery query = session.CreateQuery("from Users where Username= '" + name + "'");
-            //IQuery query = session.CreateQuery("from Users where Username= '"+name+ "' Role.Code='" + role+"'");
-            users = query.List<Entities.Dbo.Users>() as List<Entities.Dbo.Users>;
-            List<Models.Users> list = _mapper.Map<List<Entities.Dbo.Users>, List<Models.Users>>(users);
-            return list;
+              IQuery query = session.CreateQuery("from Users where Username= '" + name + "'");
+            try
+            {
+                //IQuery query = session.CreateQuery("select u from Users as u,INNER JOIN OrganizationLevels as o" +
+                //    "on u.OrganizationLevelID=o.ID where u.Username= '" + name + "' and o.ID='"+role+"'");
+
+                //IQuery query = session.CreateQuery("from Users where Username= '"+name+ "' Role.Code='" + role+"'");
+                users = query.List<Entities.Dbo.Users>() as List<Entities.Dbo.Users>;
+                List<Models.Users> list = _mapper.Map<List<Entities.Dbo.Users>, List<Models.Users>>(users);
+                return list;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            }
+           
         }
         public Models.Users getUser(string id)
         {

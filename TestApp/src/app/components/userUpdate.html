@@ -33,7 +33,11 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="userID-IL">תעודת זהות *</label>
-                            <input id="userID-IL" type="text" [(ngModel)]="user.id" name="id">
+                            <input id="userID-IL" type="text" min="9" max="9" #prmID="ngModel" [(ngModel)]="user.id"
+                                name="id">
+                            <div *ngIf="prmID.errors?.min ||prmID.errors?.max" style="color: red;">
+                                תז צריכה להכיל 9 ספרות
+                            </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="userPhone">טלפון *</label>
@@ -41,7 +45,11 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="userEmail">דוא"ל *</label>
-                            <input id="userEmail" type="text" [(ngModel)]="user.email" name="email">
+                            <input id="userEmail" email #prmEmail="ngModel" type="text" [(ngModel)]="user.email"
+                                name="email">
+                            <div *ngIf="prmEmail.errors?.email" style="color: red;">
+                                מייל לא חוקי
+                            </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="positionName">תפקיד *</label>
